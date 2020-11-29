@@ -1,4 +1,44 @@
-* {
-  margin: 0;
-  padding: 0;
+.card-validation-form {
+  display: flex;
+}
+
+.card-validation-input {
+  box-sizing: border-box;
+  height: 25px;
+  width: 250px;
+  margin-right: 5px;
+  padding: 5px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  font-size: 14px;
+
+  transition: 0.5s;
+}
+
+.input-error {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+.card-validation-input:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.card-validation-button {
+  height: 25px;
+
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #000;
+
+  transition: 0.5s;
+}
+
+.card-validation-button:disabled {
+  /* color: graytext;
+  border-color: graytext; */
+  color: rgba(128, 128, 128, 0.5);
+  border-color: rgba(128, 128, 128, 0.5);
 }
