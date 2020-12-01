@@ -5,8 +5,7 @@ export default class FormHandler {
     this.form = document.forms.cardValidation;
     this.input = this.form.cardNumber;
     this.button = this.form.validate;
-    this.acceptedElem = this.form.querySelector('div.approval.accepted');
-    this.deniedElem = this.form.querySelector('div.approval.denied');
+    this.approvalElem = this.form.querySelector('div.approval');
 
     this.button.addEventListener('click', this.buttonHandler.bind(this));
     this.input.addEventListener('keydown', this.inputKeydownHandler.bind(this));
@@ -15,9 +14,9 @@ export default class FormHandler {
 
   buttonHandler() {
     if (CardValidator.luhnAlgorithm(this.input.value)) {
-      this.acceptedElem.classList.add('visible');
+      this.approvalElem.classList.add('accepted');
     } else {
-      this.deniedElem.classList.add('visible');
+      this.approvalElem.classList.add('denied');
     }
   }
 
@@ -29,10 +28,10 @@ export default class FormHandler {
   }
 
   inputHandler() {
-    this.button.disabled = !this.input.value;
-    if (this.acceptedElem.classList.contains('visible') || this.deniedElem.classList.contains('visible')) {
-      this.acceptedElem.classList.remove('visible');
-      this.deniedElem.classList.remove('visible');
+    // this.button.disabled = !this.input.value;
+    this.button.disabled = !(this.input.value.length > 13 && this.input.value.length < 20);
+    if (this.approvalElem.classList.length > 1) {
+      this.approvalElem.classList.remove('accepted', 'denied');
     }
     if (/\D/.test(this.input.value)) {
       this.input.classList.add('input-error');

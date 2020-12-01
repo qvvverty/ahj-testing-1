@@ -54,13 +54,11 @@
 }
 
 .accepted {
+  display: block;
   background-image: url(../img/accepted.png);
 }
 
 .denied {
-  background-image: url(../img/denied.png);
-}
-
-.visible {
   display: block;
+  background-image: url(../img/denied.png);
 }
