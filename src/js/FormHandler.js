@@ -13,7 +13,7 @@ export default class FormHandler {
   }
 
   buttonHandler() {
-    if (CardValidator.luhnAlgorithm(this.input.value)) {
+    if (CardValidator.isValidLuhn(this.input.value)) {
       this.approvalElem.classList.add('accepted');
     } else {
       this.approvalElem.classList.add('denied');

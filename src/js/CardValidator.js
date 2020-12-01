@@ -1,5 +1,5 @@
 export default class CardValidator {
-  static luhnAlgorithm(cardNumber) {
+  static isValidLuhn(cardNumber) {
     let digitSum = 0;
 
     for (let i = 0; i < cardNumber.length; i += 1) {

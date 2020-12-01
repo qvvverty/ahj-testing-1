@@ -1,3 +1,8 @@
+/* * {
+  margin: 0;
+  padding: 0;
+} */
+
 .card-validation-form {
   display: flex;
 }
@@ -61,4 +66,65 @@
 .denied {
   display: block;
   background-image: url(../img/denied.png);
+}
+
+.cards {
+  width: 325px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-inline-start: 0;
+
+  list-style: none;
+}
+
+.card {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  width: 60px;
+  height: 36px;
+
+  filter: grayscale(1);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.visa {
+  background-image: url(../img/visa.png);
+}
+
+.visa-electron {
+  background-image: url(../img/visa_electron.png);
+}
+
+.master-card {
+  background-image: url(../img/mastercard.png);
+}
+
+.maestro {
+  background-image: url(../img/maestro.png);
+}
+
+.american-express {
+  background-image: url(../img/american_express.png);
+}
+
+.discover {
+  background-image: url(../img/discover.png);
+}
+
+.jcb {
+  background-image: url(../img/jcb.png);
+}
+
+.diners {
+  background-image: url(../img/dinersclub.png);
+}
+
+.mir {
+  background-image: url(../img/mir.png);
+}
+
+.selected {
+  filter: grayscale(0);
 }
