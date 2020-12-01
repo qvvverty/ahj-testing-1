@@ -1,4 +1,5 @@
 import CardValidator from './CardValidator';
+import CardFormatReader from './CardFormatReader';
 
 export default class FormHandler {
   init() {
@@ -15,6 +16,10 @@ export default class FormHandler {
   buttonHandler() {
     if (CardValidator.isValidLuhn(this.input.value)) {
       this.approvalElem.classList.add('accepted');
+
+      const cardPaySystem = CardFormatReader.getPaySystem(this.input.value);
+      this.selectedPaySystemElem = document.querySelector(`li.${cardPaySystem}`);
+      this.selectedPaySystemElem.classList.add('selected');
     } else {
       this.approvalElem.classList.add('denied');
     }
@@ -28,11 +33,15 @@ export default class FormHandler {
   }
 
   inputHandler() {
-    // this.button.disabled = !this.input.value;
     this.button.disabled = !(this.input.value.length > 13 && this.input.value.length < 20);
     if (this.approvalElem.classList.length > 1) {
       this.approvalElem.classList.remove('accepted', 'denied');
     }
+
+    if (this.selectedPaySystemElem && this.selectedPaySystemElem.classList.length > 2) {
+      this.selectedPaySystemElem.classList.remove('selected');
+    }
+
     if (/\D/.test(this.input.value)) {
       this.input.classList.add('input-error');
       this.button.disabled = true;

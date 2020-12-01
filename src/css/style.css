@@ -97,7 +97,7 @@
   background-image: url(../img/visa_electron.png);
 }
 
-.master-card {
+.mastercard {
   background-image: url(../img/mastercard.png);
 }
 
@@ -117,12 +117,17 @@
   background-image: url(../img/jcb.png);
 }
 
-.diners {
+.diners-club {
   background-image: url(../img/dinersclub.png);
 }
 
 .mir {
+  background-size: cover;
   background-image: url(../img/mir.png);
+}
+
+.unknown {
+  background-image: url(../img/unknown.png);
 }
 
 .selected {
