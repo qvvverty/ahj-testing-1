@@ -32,6 +32,8 @@ const testCardNumbers = [
   ['012345678901234', 'unknown', false],
 ];
 
+export default testCardNumbers;
+
 test.each(testCardNumbers)('Expect %s to belong %s and has validation: %s', (cardNumber, paymentSystem, isValid) => {
   expect(CardFormatReader.getPaySystem(cardNumber)).toBe(paymentSystem);
   expect(CardValidator.isValidLuhn(cardNumber)).toBe(isValid);
