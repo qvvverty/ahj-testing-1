@@ -1,8 +1,6 @@
 import FormHandler from '../FormHandler';
 import testCardNumbers from './ValidatorAndReader.test';
 
-testCardNumbers.splice(testCardNumbers.length - 1, ['711111111111111111', 'unknown']);
-
 document.body.innerHTML = `
 <ul class="cards">
   <li class="card visa"></li>
@@ -26,20 +24,33 @@ document.body.innerHTML = `
 document.addEventListener('DOMContentLoaded', () => {
   const formHandler = new FormHandler();
   formHandler.init();
-});
-// const formHandler = new FormHandler();
-// formHandler.init();
-const input = document.querySelector('[name=cardNumber]');
-const inputEvent = new Event('input');
-const submit = document.querySelector('[name=validate]');
 
-test.each(testCardNumbers)('Expect input %s to add .selected to %s element', (cardNumber, paymentSystem) => {
-  input.value = cardNumber;
-  input.dispatchEvent(inputEvent);
-  submit.click();
-  expect(document.querySelector(`.card.${paymentSystem}`).classList.contains('selected')).toBe(true);
-});
+  const input = document.querySelector('[name=cardNumber]');
+  const submit = document.querySelector('[name=validate]');
+  const inputEvent = new Event('input');
 
-// test('Test', () => {
-//   expect(document.forms.length).toBe(1);
-// });
+  test.each(testCardNumbers)('Expect input "%s" to add .selected to "%s" element', (cardNumber, paymentSystem) => {
+    input.value = cardNumber;
+    input.dispatchEvent(inputEvent);
+    submit.click();
+
+    expect(document.querySelector(`.card.${paymentSystem}`).classList.contains('selected')).toBe(true);
+  });
+
+  test('Expect inappropriate data to add .input-error to input field and disable the button', () => {
+    input.value = '123abc';
+    input.dispatchEvent(inputEvent);
+
+    expect(input.classList.contains('input-error')).toBe(true);
+    expect(submit.disabled).toBe(true);
+  });
+
+  test('Expect valid card number to add .accepted to approval element', () => {
+    // eslint-disable-next-line prefer-destructuring
+    input.value = testCardNumbers[0][0];
+    input.dispatchEvent(inputEvent);
+    submit.click();
+
+    expect(document.querySelector('div.approval').classList.contains('accepted')).toBe(true);
+  });
+});
